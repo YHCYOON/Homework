@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    ​
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    ​
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+    <title>아메리카노 팔아요!!</title>
+    ​
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
+    ​
+    <style>
+        * {
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        .wrap-color {
+            width: 600px;
+            margin: auto;
+            background-color: gainsboro;
+            border-radius: 10px;
+        }
+
+        .wrap {
+            width: 500px;
+            margin: auto;
+        }
+
+        img {
+            display: block;
+            margin: 0 auto;
+            padding: 10px 0 0 0;
+            width: 400px;
+            height: 390px;
+        }
+
+        .product {
+            float: left;
+            width: 300px;
+            height: 60px;
+            font-size: 35px;
+            font-weight: 1000;
+            text-align: center;
+            margin: 20px 0 0 0;
+        }
+
+        .price {
+            display: inline-block;
+            width: 200px;
+            height: 60px;
+            font-size: 20px;
+            font-weight: 800;
+            margin: 20px 0 0 0;
+            padding: 15px;
+        }
+
+        .comment {
+            width: 400px;
+            height: 80px;
+            font-size: 17px;
+            font-weight: 700;
+            text-align: center;
+            margin: auto;
+            padding: 10px 20px 20px 20px;
+        }
+
+        .row {
+            margin-left: 0;
+            margin-right: 0;
+        }
+
+        .name-label {
+            font-size: 17px;
+            text-align: center;
+            font-weight: 700;
+            padding: 5px 0 5px 0;
+        }
+
+        .amount {
+            width: 83%;
+            padding: 0 0 0 15px;
+        }
+
+        .label-input {
+            padding: 0 0 0 15px;
+        }
+
+        .btn-wrap {
+            padding: 0 150px 20px 150px;
+        }
+
+        .btn-block {
+            font-weight: 700;
+        }
+
+        .rate {
+            color: blue;
+            font-weight: 700;
+        }
+
+
+    </style>
+    ​
+    <script>
+
+
+        $(document).ready(function () {
+
+            $.ajax({
+                type: "GET",
+                url: "https://api.manana.kr/exchange/rate.json",
+                data: {},
+                success: function (response) {
+                    let nowRate = response[1]['rate'];
+                    $('#currentRate').text(nowRate)
+
+                }
+            })
+        })
+
+        function orderAlert() {
+            let userName = $('#inputEmail1').val()
+            let coffeeAmount = $('#inlineFormCustomSelectPref').val()
+            let userAddress = $('#inputEmail2').val()
+            let userPhone = $('#inputEmail3').val()
+
+            if (userName == '') {
+                alert("주문자 이름을 입력하세요")
+            } else if (coffeeAmount == '잔 수를 선택하세요.') {
+                alert("잔 수를 선택하세요")
+            } else if (userAddress == '') {
+                alert("주소를 입력하세요")
+            } else if (userPhone == '') {
+                alert("전화번호를 입력하세요")
+            } else {
+                alert("주문이 완료되었습니다")
+            }
+        }
+
+
+    </script>
+</head>
+​
+​
+<body>
+<div class="wrap-color">
+    <div class="wrap">
+        <img src="http://cafefiles.naver.net/MjAxOTA3MTNfMjE5/MDAxNTYzMDAxMTMzOTMw.IKv-VyU6BrTuntWEeaWRhe1Kwr3E716ZInWybpEDmowg.QOQ11k_E6TCfbcHB1xTPydZhGedvXsatp_tFtDK9dK4g.PNG/BDBA%3FB9F7BDBA_BEC6C0%3FBA_BE%3FAE%3FB3EB.png">
+        <div class="product-wrap">
+            <div class="product">아이스 아메리카노</div>
+            <div class="price">가격 : 5,000원 / 잔</div>
+        </div>
+        <div class="comment">
+            무더운 여름날!! 당신의 집중력 향상에 도움을 주는 시원한 아이스 아메리카노 한잔씩 하고 가세요!!
+        </div>
+        <h5 class="rate">환율 : <span id="currentRate"></span> 원/달러</h5>
+        <form class="form">
+            <div class="form-group row">
+                <label for="inputEmail1" class="col-sm-2 col-form-label name-label">주문자 이름</label>
+                <div class="col-sm-10 label-input">
+                    <input type="email" class="form-control" id="inputEmail1" placeholder="주문자 이름">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="inlineFormCustomSelectPref" class="col-sm-2 col-form-label name-label">수 량</label>
+                <div class="amount">
+                    <select class="form-control" id="inlineFormCustomSelectPref">
+                        <option selected>잔 수를 선택하세요.</option>
+                        <option value="1">1잔 - 5,000원</option>
+                        <option value="2">2잔 - 10,000원</option>
+                        <option value="3">3잔 - 15,000원</option>
+                        <option value="4">4잔 - 20,000원</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="inputEmail2" class="col-sm-2 col-form-label name-label">주 소</label>
+                <div class="col-sm-10 label-input">
+                    <input type="email" class="form-control" id="inputEmail2" placeholder="주소">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="inputEmail3" class="col-sm-2 col-form-label name-label">전화번호</label>
+                <div class="col-sm-10 label-input">
+                    <input type="email" class="form-control" id="inputEmail3" placeholder="전화번호">
+                </div>
+            </div>
+            <div class="btn-wrap">
+                <button onclick="orderAlert()" type="button" class="btn btn-primary btn-lg btn-block">주문하기</button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
